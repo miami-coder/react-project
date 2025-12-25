@@ -3,6 +3,6 @@ import axios from "axios";
 export const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_TMDB_API_URL,
     params: {
-        apiKey: import.meta.env.VITE_TMDB_API_KEY,
+        api_key: import.meta.env.VITE_TMDB_API_KEY,
     }
 })

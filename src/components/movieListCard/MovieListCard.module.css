@@ -1,0 +1,99 @@
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-bottom: 10px;
+    background: #1a1d23;
+    border-radius: 12px;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+.posterWrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    background-color: #1a1d23;
+}
+
+.posterWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--accent-cyan);
+    font-weight: 800;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2;
+}
+
+.info {
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+    overflow: hidden;
+}
+
+.info h4 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #ffffff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 36px;
+}
+
+.extraInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    height: 20px;
+}
+
+.genres {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    height: 22px;
+    overflow: hidden;
+}
+
+.playOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(76, 201, 240, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card:hover .playOverlay {
+    opacity: 1;
+}

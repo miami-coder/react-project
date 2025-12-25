@@ -1,0 +1,55 @@
+.infoContainer {
+    padding: 40px;
+    max-width: 800px;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #fff;
+}
+
+.ratingRow {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.releaseDate {
+    font-size: 1.1rem;
+    color: #888;
+    font-weight: 500;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.overview {
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+.overview h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #4cc9f0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.overview p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ccc;
+    text-align: justify;
+}
