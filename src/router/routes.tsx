@@ -1,7 +1,7 @@
 import {createBrowserRouter, Navigate} from "react-router";
 import MainLayout from "../layouts/MainLayout.tsx";
-import {MoviesPage} from "../pages/MoviesPage.tsx";
-import {MovieDetailsPage} from "../pages/MovieDetailsPage.tsx";
+import {MoviesPage} from "../pages/moviePage/MoviesPage.tsx";
+import {MovieDetailsPage} from "../pages/movieDetailPage/MovieDetailsPage.tsx";
 
 export const routes = createBrowserRouter([
     {

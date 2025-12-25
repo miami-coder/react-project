@@ -20,6 +20,7 @@ const initialState: MovieSliceType = {
     error: null
 };
 
+
 export const loadMovies = createAsyncThunk(
     'movieSlice/loadMovies',
     async (page: number, thunkAPI) => {
@@ -44,9 +45,43 @@ export const loadMovieById = createAsyncThunk(
     }
 );
 
+export const loadMoviesBySearch = createAsyncThunk(
+    'movieSlice/loadMoviesBySearch',
+    async ({ query, page }: { query: string; page: number }, thunkAPI) => {
+        try {
+            return await movieService.searchMovies(query, page);
+        } catch (e) {
+            console.log(e);
+            return thunkAPI.rejectWithValue('Помилка під час пошуку');
+        }
+    }
+);
+
+export const loadMoviesByGenre = createAsyncThunk(
+    'movieSlice/loadMoviesByGenre',
+    async ({ genreId, page }: { genreId: string; page: number }, thunkAPI) => {
+        try {
+            return await movieService.getByGenre(genreId, page);
+        } catch (e) {
+            console.log(e);
+            return thunkAPI.rejectWithValue('Помилка при фільтрації за жанром');
+        }
+    }
+);
+
+
+const handleMoviesFulfilled = (state: MovieSliceType, action: PayloadAction<IMovieResponse>) => {
+    state.movies = action.payload.results;
+    state.totalPages = action.payload.total_pages > 500 ? 500 : action.payload.total_pages;
+    state.currentPage = action.payload.page;
+    state.loadState = true;
+    state.error = null;
+};
+
+
 export const movieSlice = createSlice({
     name: "movieSlice",
-    initialState: initialState,
+    initialState,
     reducers: {
         setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
@@ -57,21 +92,18 @@ export const movieSlice = createSlice({
     },
     extraReducers: builder =>
         builder
-            .addCase(loadMovies.fulfilled, (state, action: PayloadAction<IMovieResponse>) => {
-                state.movies = action.payload.results;
-                state.totalPages = action.payload.total_pages > 500 ? 500 : action.payload.total_pages;
-                state.currentPage = action.payload.page;
-                state.loadState = true;
-                state.error = null;
-            })
+            .addCase(loadMovies.fulfilled, handleMoviesFulfilled)
+            .addCase(loadMoviesBySearch.fulfilled, handleMoviesFulfilled)
+            .addCase(loadMoviesByGenre.fulfilled, handleMoviesFulfilled)
+
             .addCase(loadMovieById.fulfilled, (state, action: PayloadAction<IMovie>) => {
                 state.currentMovie = action.payload;
                 state.loadState = true;
             })
-            .addMatcher(isPending(loadMovies), (state) => {
+            .addMatcher(isPending(loadMovies, loadMoviesBySearch, loadMoviesByGenre, loadMovieById), (state) => {
                 state.loadState = false;
             })
-            .addMatcher(isRejected(loadMovies), (state, action) => {
+            .addMatcher(isRejected(loadMovies, loadMoviesBySearch, loadMoviesByGenre, loadMovieById), (state, action) => {
                 state.loadState = true;
                 state.error = action.payload as string;
             })
@@ -81,4 +113,6 @@ export const movieSliceActions = {
     ...movieSlice.actions,
     loadMovies,
     loadMovieById,
+    loadMoviesBySearch,
+    loadMoviesByGenre
 }
