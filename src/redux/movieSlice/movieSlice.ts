@@ -28,7 +28,7 @@ export const loadMovies = createAsyncThunk(
             return await movieService.getAll(page);
         } catch (e) {
             console.log(e);
-            return thunkAPI.rejectWithValue('Не вдалося завантажити фільми');
+            return thunkAPI.rejectWithValue('Failed to download movies');
         }
     }
 );
@@ -40,7 +40,7 @@ export const loadMovieById = createAsyncThunk(
             return await movieService.getById(id);
         } catch (e) {
             console.log(e);
-            return thunkAPI.rejectWithValue('Фільм не знайдено');
+            return thunkAPI.rejectWithValue('Movie not found');
         }
     }
 );
@@ -52,7 +52,7 @@ export const loadMoviesBySearch = createAsyncThunk(
             return await movieService.searchMovies(query, page);
         } catch (e) {
             console.log(e);
-            return thunkAPI.rejectWithValue('Помилка під час пошуку');
+            return thunkAPI.rejectWithValue('Error while searching');
         }
     }
 );
@@ -64,7 +64,7 @@ export const loadMoviesByGenre = createAsyncThunk(
             return await movieService.getByGenre(genreId, page);
         } catch (e) {
             console.log(e);
-            return thunkAPI.rejectWithValue('Помилка при фільтрації за жанром');
+            return thunkAPI.rejectWithValue('Error filtering by genre');
         }
     }
 );

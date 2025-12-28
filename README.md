@@ -71,3 +71,6 @@ export default defineConfig([
   },
 ])
 ```
+.env file
+VITE_TMDB_API_KEY=9666d0fd8c3506e76a3d4ff6b0d6639e
+VITE_TMDB_API_URL=https://api.themoviedb.org/3
