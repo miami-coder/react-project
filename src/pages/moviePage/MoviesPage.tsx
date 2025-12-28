@@ -45,7 +45,7 @@ export const MoviesPage = () => {
                     {searchQuery ? `No results for: "${searchQuery}"` : "No movies found"}
                 </h3>
                 <div className={s.noResults}>
-                    <p>We couldn't find any movies matching your request.</p>
+                    <p>Don't push the horses.</p>
                     <button onClick={() => setSearchParams({})} className={s.pageBtn}>
                         Back to All Movies
                     </button>
